@@ -2,7 +2,7 @@ package dev.juniorcesarabreu.personapi.controller;
 
 import dev.juniorcesarabreu.personapi.dto.request.PersonDTO;
 import dev.juniorcesarabreu.personapi.dto.response.MessageResponseDTO;
-import dev.juniorcesarabreu.personapi.entity.Person;
+import dev.juniorcesarabreu.personapi.exception.PersonNotFoundException;
 import dev.juniorcesarabreu.personapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,5 +36,10 @@ public class PersonController {
     @GetMapping
     public List<PersonDTO> listAll() {
         return personService.listAll();
+    }
+
+    @GetMapping("/{id}") // mapeia para evitar conflito com listAll()
+    public PersonDTO findById(@PathVariable Long id) throws PersonNotFoundException { // @PathVariable indica que está passando o id
+        return personService.findById(id);
     }
 }
