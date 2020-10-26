@@ -19,10 +19,10 @@ public class PhoneDTO {
 
     private Long id;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // enumeração
     private PhoneType type;
 
-    @NotEmpty
-    @Size(min = 13, max = 14)
+    @NotEmpty // não pode ser vazio
+    @Size(min = 13, max = 14) // limite minimo e maximo do campo
     private String number;
 }

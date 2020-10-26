@@ -16,11 +16,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonDTO {
+    // DTO - data transfer object
+    // utilizado para fazer transferencia de dados
+    // permite fazer a validação dos dados de entrada na camada de controller
 
     private Long id;
 
-    @NotEmpty
-    @Size(min = 2, max = 100)
+    @NotEmpty // Não permite vazio
+    @Size(min = 2, max = 100) // limita o tamanho minimo e maximo
     private String firstName;
 
     @NotEmpty
@@ -28,12 +31,12 @@ public class PersonDTO {
     private String lastName;
 
     @NotEmpty
-    @CPF
+    @CPF // valida CPF
     private String cpf;
 
     private String birthDate;
 
-    @Valid
+    @Valid // valida todos os dados do telefone
     @NotEmpty
     private List<PhoneDTO> phones;
 }

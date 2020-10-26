@@ -1,7 +1,9 @@
 package dev.juniorcesarabreu.personapi.service;
 
+import dev.juniorcesarabreu.personapi.dto.request.PersonDTO;
 import dev.juniorcesarabreu.personapi.dto.response.MessageResponseDTO;
 import dev.juniorcesarabreu.personapi.entity.Person;
+import dev.juniorcesarabreu.personapi.mapper.PersonMapper;
 import dev.juniorcesarabreu.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +16,19 @@ public class PersonService {
     // injeção da classe repository
     private PersonRepository personRepository;
 
+    private final PersonMapper personMapper = PersonMapper.INSTANCE;
+
     @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
     @PostMapping // operação http para criar
-    public MessageResponseDTO createPerson(Person person) {
+    public MessageResponseDTO createPerson(PersonDTO personDTO) {
 
-        Person savedPerson = personRepository.save(person);
+        Person personToSave = personMapper.toModel(personDTO);
+
+        Person savedPerson = personRepository.save(personToSave);
 
         return MessageResponseDTO
                 .builder()
