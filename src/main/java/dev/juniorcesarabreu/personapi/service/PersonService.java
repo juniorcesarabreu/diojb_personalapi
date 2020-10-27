@@ -6,6 +6,7 @@ import dev.juniorcesarabreu.personapi.entity.Person;
 import dev.juniorcesarabreu.personapi.exception.PersonNotFoundException;
 import dev.juniorcesarabreu.personapi.mapper.PersonMapper;
 import dev.juniorcesarabreu.personapi.repository.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,16 +16,17 @@ import java.util.stream.Collectors;
 
 @Service
 // indica para o spring para gerenciar uma classe que será responsavel pelas regras de negocio da aplicação, tratando melhor suporte transacional
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
     // injeção da classe repository
     private PersonRepository personRepository;
 
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
+//    @Autowired
+//    public PersonService(PersonRepository personRepository) {
+//        this.personRepository = personRepository;
+//    }
 
     @PostMapping // operação http para criar
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
