@@ -28,7 +28,6 @@ public class PersonService {
 //        this.personRepository = personRepository;
 //    }
 
-    @PostMapping // operação http para criar
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
 
         Person personToSave = personMapper.toModel(personDTO);
